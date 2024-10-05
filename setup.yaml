@@ -1,0 +1,13 @@
+---
+- hosts: jenkins-machine
+  become: true
+  gather_facts: true
+  roles:
+    - docker_setup
+    
+- hosts: kubernetes-machine
+  become: true
+  gather_facts: true
+  roles:
+    - helm_setup
+    - nginx_setup

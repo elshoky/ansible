@@ -1,0 +1,6 @@
+
+- name: add helm repo 
+  shell: helm repo add shubhamtatvamasi https://shubhamtatvamasi.github.io/helm
+
+- name: Install nginx using Helm
+  shell: helm install my-nginx shubhamtatvamasi/nginx --version 0.1.12

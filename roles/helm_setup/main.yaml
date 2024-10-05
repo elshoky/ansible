@@ -1,0 +1,51 @@
+
+# - name: Install curl (if not already installed)
+#   package:
+#     name: curl
+#     state: present
+
+# - name: Import Helm GPG key
+#   shell: "curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null"
+
+# - name: Install apt-transport-https package
+#   apt:
+#     name: apt-transport-https
+#     state: present
+
+# - name: Add Helm repository to sources list
+#   shell: "echo 'deb [arch={{ ansible_architecture }} signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main' | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
+
+# - name: Update APT cache
+#   apt:
+#     update_cache: yes
+
+# - name: Install Helm
+#   apt:
+#     name: helm
+#     state: present
+
+
+# - name: Install curl (if not already installed)
+#   package:
+#     name: curl
+#     state: present
+
+- name: Import Helm GPG key
+  shell: curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+
+- name: Install apt-transport-https package
+  apt:
+    name: apt-transport-https
+    state: present
+
+- name: Add Helm repository to APT sources
+  shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+
+- name: Update APT package cache
+  apt:
+    update_cache: yes
+
+- name: Install Helm
+  apt:
+    name: helm
+    state: present

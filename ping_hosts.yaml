@@ -1,0 +1,8 @@
+---
+- name: Ping all hosts from AWS EC2 inventory
+  hosts: all
+  remote_user: ubuntu
+  gather_facts: false
+  tasks:
+    - name: Ping each host
+      ping:
